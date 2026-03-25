@@ -67,7 +67,7 @@ workspace.Terrain.WaterWaveSize = 0
 workspace.Terrain.WaterWaveSpeed = 0
 workspace.Terrain.WaterReflectance = 0
 
--- ===== PIXEL FONT (~90%) =====
+-- ===== PIXEL FONT (ÉP LIÊN TỤC) =====
 
 local function pixelFont(v)
 
@@ -87,12 +87,13 @@ local function pixelFont(v)
 
 end
 
-for _,v in pairs(playerGui:GetDescendants()) do
-    pixelFont(v)
-end
-
-playerGui.DescendantAdded:Connect(function(v)
-    pixelFont(v)
+task.spawn(function()
+    while true do
+        for _,v in pairs(playerGui:GetDescendants()) do
+            pixelFont(v)
+        end
+        task.wait(1)
+    end
 end)
 
 -- ===== FPS COUNTER =====
